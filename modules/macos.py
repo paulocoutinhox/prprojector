@@ -229,13 +229,35 @@ def run_task_build():
 
         check_call(command, shell=True)
 
+        # isolate
+        f.debug(
+            'Isolating application (.app) to arch "{0}" and mode "{1}"...'.format(
+                target["cpu"], target["mode"]
+            )
+        )
+
+        out_dir = os.path.join(build_dir, "out")
+        f.remove_dir(out_dir)
+        f.create_dir(out_dir)
+
+        f.copy_all_inside(
+            os.path.join(build_dir, "PRProjector.app"),
+            os.path.join(out_dir, "PRProjector.app"),
+        )
+
         # analyzing
+        f.debug(
+            'Analyzing to arch "{0}" and mode "{1}"...'.format(
+                target["cpu"], target["mode"]
+            )
+        )
+
         command = []
         command.append("pkgbuild")
         command.append("--quiet")
         command.append("--analyze")
         command.append("--root")
-        command.append(os.path.join(build_dir, "PRProjector.app"))
+        command.append(os.path.join(out_dir))
         command.append(os.path.join(build_dir, "pkg.plist"))
 
         command = " ".join(command)
@@ -243,6 +265,12 @@ def run_task_build():
         check_call(command, shell=True)
 
         # fix install location
+        f.debug(
+            'Fixing install location to arch "{0}" and mode "{1}"...'.format(
+                target["cpu"], target["mode"]
+            )
+        )
+
         command = []
         command.append("plutil")
         command.append("-replace")
@@ -255,11 +283,7 @@ def run_task_build():
 
         check_call(command, shell=True)
 
-        # building package
-        pkg_dir = os.path.join("build", target["name"], "pkg")
-
-        f.create_dir(pkg_dir)
-
+        # build package
         f.debug(
             'Building package (.pkg) to arch "{0}" and mode "{1}"...'.format(
                 target["cpu"], target["mode"]
@@ -269,7 +293,7 @@ def run_task_build():
         command = []
         command.append("pkgbuild")
         command.append("--root")
-        command.append('"{0}"'.format(os.path.join(build_dir, "PRProjector.app")))
+        command.append('"{0}"'.format(os.path.join(out_dir)))
         command.append("--component-plist")
         command.append(os.path.join(build_dir, "pkg.plist"))
         command.append("--version")
@@ -278,8 +302,44 @@ def run_task_build():
         command.append("/Applications")
         command.append("--identifier")
         command.append(c.macos_identifier)
-        command.append("--sign")
-        command.append('"{0}"'.format(c.macos_installer_certificate_name))
+        command.append(os.path.join(build_dir, "app.pkg"))
+
+        command = " ".join(command)
+
+        check_call(command, shell=True)
+
+        # synthesize
+        f.debug(
+            'Synthesizing package (.pkg) to arch "{0}" and mode "{1}"...'.format(
+                target["cpu"], target["mode"]
+            )
+        )
+
+        command = []
+        command.append("productbuild")
+        command.append("--synthesize")
+        command.append("--package")
+        command.append(os.path.join(build_dir, "app.pkg"))
+        command.append(os.path.join(build_dir, "distribution.xml"))
+
+        command = " ".join(command)
+
+        check_call(command, shell=True)
+
+        # distribute package
+        f.debug(
+            'Distributing package (.pkg) to arch "{0}" and mode "{1}"...'.format(
+                target["cpu"], target["mode"]
+            )
+        )
+
+        pkg_dir = os.path.join("build", target["name"], "pkg")
+        f.create_dir(pkg_dir)
+
+        command = []
+        command.append("productbuild")
+        command.append("--distribution")
+        command.append(os.path.join(build_dir, "distribution.xml"))
         command.append(
             os.path.join(
                 pkg_dir, "PRProjector-{0}-{1}.pkg".format(target["cpu"], target["mode"])
