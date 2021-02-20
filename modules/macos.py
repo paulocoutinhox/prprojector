@@ -334,7 +334,7 @@ def run_task_build():
             )
         )
 
-        pkg_dir = os.path.join("build", target["name"], "pkg")
+        pkg_dir = os.path.join(current_dir, "build", target["name"], "pkg")
         f.create_dir(pkg_dir)
 
         command = []
