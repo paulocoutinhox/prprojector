@@ -37,28 +37,17 @@ jobs:
     - name: Install python dependencies
       run: pip install -r requirements.txt
 
-    - name: Create keychain
-      run: |
-        security create-keychain -p prprojector build.keychain security default-keychain -s build.keychain
-        security unlock-keychain -p prprojector build.keychain          
-
     - name: Install application certificate
-      env: 
-        MACOS_CERTIFICATE: ${{ secrets.MAC_APPLICATION_CERTIFICATE_P12 }}
-        MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_APPLICATION_CERTIFICATE_PASSPHRASE }}
-      run: |
-          echo $MACOS_CERTIFICATE | base64 --decode > certificate-application.p12
-          security import certificate-application.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k prprojector build.keychain
+      uses: apple-actions/import-codesign-certs@v1
+      with: 
+        p12-file-base64: ${{ secrets.MAC_APPLICATION_CERTIFICATE_P12 }}
+        p12-password: ${{ secrets.MAC_APPLICATION_CERTIFICATE_PASSPHRASE }}
 
     - name: Install installer certificate
-      env: 
-        MACOS_CERTIFICATE: ${{ secrets.MAC_INSTALLER_CERTIFICATE_P12 }}
-        MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSPHRASE }}
-      run: |
-          echo $MACOS_CERTIFICATE | base64 --decode > certificate-installer.p12
-          security import certificate-installer.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
-          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k prprojector build.keychain
+      uses: apple-actions/import-codesign-certs@v1
+      with: 
+        p12-file-base64: ${{ secrets.MAC_INSTALLER_CERTIFICATE_P12 }}
+        p12-password: ${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSPHRASE }}
 
     - name: Build
       run: python make.py run build-${{ matrix.config.target }}
