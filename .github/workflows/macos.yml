@@ -42,6 +42,7 @@ jobs:
         MACOS_CERTIFICATE: ${{ secrets.MAC_APPLICATION_CERTIFICATE_P12 }}
         MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_APPLICATION_CERTIFICATE_PASSPHRASE }}
       run: |
+          echo $MACOS_CERTIFICATE
           echo $MACOS_CERTIFICATE | base64 —decode > certificate-application.p12
           security create-keychain -p prprojector build.keychain security default-keychain -s build.keychain
           security unlock-keychain -p prprojector build.keychain
