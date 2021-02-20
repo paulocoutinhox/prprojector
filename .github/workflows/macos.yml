@@ -20,7 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
@@ -28,7 +28,7 @@ jobs:
     - name: Upgrade PIP
       run: python -m pip install --upgrade pip setuptools wheel
 
-    - name: Display Python version
+    - name: Display python version
       run: python --version
 
     - name: Display PIP version
@@ -37,28 +37,26 @@ jobs:
     - name: Install python dependencies
       run: pip install -r requirements.txt
 
-    - name: Remove Keychain
-      run: security delete-keychain prprojector
+    - name: Create keychain
+      run: |
+        security create-keychain -p prprojector build.keychain security default-keychain -s build.keychain
+        security unlock-keychain -p prprojector build.keychain          
 
-    - name: Install Application Certificate
+    - name: Install application certificate
       env: 
         MACOS_CERTIFICATE: ${{ secrets.MAC_APPLICATION_CERTIFICATE_P12 }}
         MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_APPLICATION_CERTIFICATE_PASSPHRASE }}
       run: |
           echo $MACOS_CERTIFICATE | base64 --decode > certificate-application.p12
-          security create-keychain -p prprojector build.keychain security default-keychain -s build.keychain
-          security unlock-keychain -p prprojector build.keychain
           security import certificate-application.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k prprojector build.keychain
 
-    - name: Install Installer Certificate
+    - name: Install installer certificate
       env: 
         MACOS_CERTIFICATE: ${{ secrets.MAC_INSTALLER_CERTIFICATE_P12 }}
         MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSPHRASE }}
       run: |
           echo $MACOS_CERTIFICATE | base64 --decode > certificate-installer.p12
-          security create-keychain -p prprojector build.keychain security default-keychain -s build.keychain
-          security unlock-keychain -p prprojector build.keychain
           security import certificate-installer.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k prprojector build.keychain
 
