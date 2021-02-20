@@ -6,7 +6,9 @@ make_task = ""
 qt_version = "5.15.2"
 
 # macos
-macos_dist_certificate_name = "3rd Party Mac Developer Application: Paulo Coutinho (99AHAA343Q)"
+macos_dist_certificate_name = (
+    "3rd Party Mac Developer Application: Paulo Coutinho (99AHAA343Q)"
+)
 macos_installer_certificate_name = (
     "3rd Party Mac Developer Installer: Paulo Coutinho (99AHAA343Q)"
 )

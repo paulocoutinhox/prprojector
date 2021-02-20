@@ -18,20 +18,20 @@ FORMS = $$files(code/*.ui, true)
 
 RESOURCES = code/Resources.qrc
 
-RC_FILE = code/App.rc
+OTHER_FILES += code/resources/qml/ProjectorScreen.qml
 
-OTHER_FILES += \
-    code/resources/qml/ProjectorScreen.qml \
-    code/App.rc
+win32 {
+    RC_FILE = code/App.rc
+}
 
 macx {
-    # compilação
+    # compilation
     QMAKE_CFLAGS_RELEASE = $$QMAKE_CFLAGS_RELEASE_WITH_DEBUGINFO
     QMAKE_CXXFLAGS_RELEASE = $$QMAKE_CXXFLAGS_RELEASE_WITH_DEBUGINFO
     QMAKE_OBJECTIVE_CFLAGS_RELEASE =  $$QMAKE_OBJECTIVE_CFLAGS_RELEASE_WITH_DEBUGINFO
     QMAKE_LFLAGS_RELEASE = $$QMAKE_LFLAGS_RELEASE_WITH_DEBUGINFO
 
-    # plataforma
+    # platform
     #CONFIG += x86_64
     #QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
 
@@ -40,8 +40,8 @@ macx {
     QMAKE_CXXFLAGS += -gdwarf-2
 
     # plist
-    QMAKE_INFO_PLIST = $${PWD}/code/resources/macosx/Info.plist
+    QMAKE_INFO_PLIST = $${PWD}/code/resources/macos/Info.plist
 
-    # ícone
+    # icon
     ICON = $${PWD}/code/resources/icons/app.icns
 }

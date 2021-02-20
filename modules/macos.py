@@ -241,10 +241,15 @@ def run_task_build():
         )
 
         command = []
-        command.append("productbuild")
+        command.append("pkgbuild")
         command.append("--component")
-        command.append(os.path.join(build_dir, "PRProjector.app"))
+        command.append('"{0}"'.format(os.path.join(build_dir, "PRProjector.app")))
+        command.append("--version")
+        command.append("1")
+        command.append("--install-location")
         command.append("/Applications")
+        command.append("--identifier")
+        command.append("com.prsolucoes.prprojector")
         command.append("--sign")
         command.append('"{0}"'.format(c.macos_installer_certificate_name))
         command.append(
