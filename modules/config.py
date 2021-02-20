@@ -6,6 +6,9 @@ make_task = ""
 qt_version = "5.15.2"
 
 # macos
+macos_pkg_version = "1.0.0"
+macos_identifier = "com.prsolucoes.prprojector"
+
 macos_dist_certificate_name = (
     "3rd Party Mac Developer Application: Paulo Coutinho (99AHAA343Q)"
 )

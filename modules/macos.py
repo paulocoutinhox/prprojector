@@ -229,6 +229,31 @@ def run_task_build():
 
         check_call(command, shell=True)
 
+        # analyzing
+        command = []
+        command.append("pkgbuild")
+        command.append("--quiet")
+        command.append("--root")
+        command.append(os.path.join(build_dir, "PRProjector.app"))
+        command.append(os.path.join(build_dir, "pkg.plist"))
+
+        command = " ".join(command)
+
+        check_call(command, shell=True)
+
+        # fix install location
+        command = []
+        command.append("plutil")
+        command.append("-replace")
+        command.append("BundleIsRelocatable")
+        command.append("-bool")
+        command.append("NO")
+        command.append(os.path.join(build_dir, "pkg.plist"))
+
+        command = " ".join(command)
+
+        check_call(command, shell=True)
+
         # building package
         pkg_dir = os.path.join("build", target["name"], "pkg")
 
@@ -242,14 +267,16 @@ def run_task_build():
 
         command = []
         command.append("pkgbuild")
-        command.append("--component")
+        command.append("--root")
         command.append('"{0}"'.format(os.path.join(build_dir, "PRProjector.app")))
+        command.append("--component-plist")
+        command.append("pkg.plist")
         command.append("--version")
-        command.append("1")
+        command.append(c.macos_pkg_version)
         command.append("--install-location")
         command.append("/Applications")
         command.append("--identifier")
-        command.append("com.prsolucoes.prprojector")
+        command.append(c.macos_identifier)
         command.append("--sign")
         command.append('"{0}"'.format(c.macos_installer_certificate_name))
         command.append(
