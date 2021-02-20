@@ -271,7 +271,7 @@ def run_task_build():
         command.append("--root")
         command.append('"{0}"'.format(os.path.join(build_dir, "PRProjector.app")))
         command.append("--component-plist")
-        command.append("pkg.plist")
+        command.append(os.path.join(build_dir, "pkg.plist"))
         command.append("--version")
         command.append(c.macos_pkg_version)
         command.append("--install-location")
