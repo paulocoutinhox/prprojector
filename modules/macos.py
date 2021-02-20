@@ -47,6 +47,7 @@ def run_task_build():
 
         # generate files
         build_dir = os.path.join(
+            current_dir,
             "build",
             target["name"],
             "{0}-{1}-{2}".format(target["name"], target["cpu"], target["mode"]),
