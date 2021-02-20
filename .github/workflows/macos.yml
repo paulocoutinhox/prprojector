@@ -42,8 +42,7 @@ jobs:
         MACOS_CERTIFICATE: ${{ secrets.MAC_APPLICATION_CERTIFICATE_P12 }}
         MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_APPLICATION_CERTIFICATE_PASSPHRASE }}
       run: |
-          echo $MACOS_CERTIFICATE
-          echo $MACOS_CERTIFICATE | base64 —decode > certificate-application.p12
+          echo $MACOS_CERTIFICATE | base64 --decode > certificate-application.p12
           security create-keychain -p prprojector build.keychain security default-keychain -s build.keychain
           security unlock-keychain -p prprojector build.keychain
           security import certificate-application.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
@@ -54,7 +53,7 @@ jobs:
         MACOS_CERTIFICATE: ${{ secrets.MAC_INSTALLER_CERTIFICATE_P12 }}
         MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSPHRASE }}
       run: |
-          echo $MACOS_CERTIFICATE | base64 —decode > certificate-installer.p12
+          echo $MACOS_CERTIFICATE | base64 --decode > certificate-installer.p12
           security create-keychain -p prprojector build.keychain security default-keychain -s build.keychain
           security unlock-keychain -p prprojector build.keychain
           security import certificate-installer.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
