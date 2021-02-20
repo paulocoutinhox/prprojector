@@ -38,19 +38,26 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Install Application Certificate
-      uses: apple-actions/import-codesign-certs@v1
-      with: 
-        keychain: 'prprojector-${{ matrix.config.target }}'
-        p12-file-base64: ${{ secrets.MAC_APPLICATION_CERTIFICATE_P12 }}
-        p12-password: ${{ secrets.MAC_APPLICATION_CERTIFICATE_PASSPHRASE }}
+      env: 
+        MACOS_CERTIFICATE: ${{ secrets.MAC_APPLICATION_CERTIFICATE_P12 }}
+        MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_APPLICATION_CERTIFICATE_PASSPHRASE }}
+      run: |
+          echo $MACOS_CERTIFICATE | base64 —decode > certificate.p12
+          security create-keychain -p prprojector build.keychain security default-keychain -s build.keychain
+          security unlock-keychain -p prprojector build.keychain
+          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k prprojector build.keychain
 
     - name: Install Installer Certificate
-      uses: apple-actions/import-codesign-certs@v1
-      with: 
-        keychain: 'prprojector-${{ matrix.config.target }}'
-        create-keychain: false
-        p12-file-base64: ${{ secrets.MAC_INSTALLER_CERTIFICATE_P12 }}
-        p12-password: ${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSPHRASE }}
+      env: 
+        MACOS_CERTIFICATE: ${{ secrets.MAC_INSTALLER_CERTIFICATE_P12 }}
+        MACOS_CERTIFICATE_PWD: ${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSPHRASE }}
+      run: |
+          echo $MACOS_CERTIFICATE | base64 —decode > certificate.p12
+          security create-keychain -p prprojector build.keychain security default-keychain -s build.keychain
+          security unlock-keychain -p prprojector build.keychain
+          security import certificate.p12 -k build.keychain -P $MACOS_CERTIFICATE_PWD -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k prprojector build.keychain
 
     - name: Build
       run: python make.py run build-${{ matrix.config.target }}
