@@ -1,5 +1,7 @@
 # PRProjector
 
+[![Build - macOS](https://github.com/paulo-coutinho/prprojector/actions/workflows/macos.yml/badge.svg?branch=master)](https://github.com/paulo-coutinho/prprojector/actions/workflows/macos.yml)
+
 Software to images, videos, texts and lyrics on datashow or any external monitor/display.
 
 <p align="center"><a href="https://github.com/paulo-coutinho/prprojector" target="_blank" rel="noopener noreferrer"><img src="extras/screenshots/screenshot1.png" alt="screenshot 1"></a></p>
