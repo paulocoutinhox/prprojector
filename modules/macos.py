@@ -233,6 +233,7 @@ def run_task_build():
         command = []
         command.append("pkgbuild")
         command.append("--quiet")
+        command.append("--analyze")
         command.append("--root")
         command.append(os.path.join(build_dir, "PRProjector.app"))
         command.append(os.path.join(build_dir, "pkg.plist"))
