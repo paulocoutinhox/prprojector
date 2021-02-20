@@ -1,0 +1,5 @@
+docopt
+python-slugify
+tqdm
+black
+aqtinstall

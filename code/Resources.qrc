@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/qml/ProjectorScreen.qml</file>
+        <file>resources/images/logo.png</file>
+        <file>resources/images/pagseguro.gif</file>
+    </qresource>
+</RCC>
