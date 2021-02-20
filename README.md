@@ -23,13 +23,13 @@ pip install -r requirements.txt
 2 - Call build for your platform:
 
 ```
-python make.py build-macos
+python make.py run build-macos
 
 or
 
-python make.py build-linux
+python make.py run build-linux
 
 or
 
-python make.py build-windows
+python make.py run build-windows
 ```

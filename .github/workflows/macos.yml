@@ -38,7 +38,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Build
-      run: python make.py build-${{ matrix.config.target }}
+      run: python make.py run build-${{ matrix.config.target }}
 
     - name: Save
       uses: actions/upload-artifact@v2
