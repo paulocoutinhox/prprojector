@@ -320,12 +320,12 @@ def run_task_build():
         command.append("productbuild")
         command.append("--synthesize")
         command.append("--package")
-        command.append(os.path.join(build_dir, "app.pkg"))
-        command.append(os.path.join(build_dir, "distribution.xml"))
+        command.append("app.pkg")
+        command.append("distribution.xml")
 
         command = " ".join(command)
 
-        check_call(command, shell=True)
+        check_call(command, cwd=build_dir, shell=True)
 
         # distribute package
         f.debug(
@@ -340,7 +340,7 @@ def run_task_build():
         command = []
         command.append("productbuild")
         command.append("--distribution")
-        command.append(os.path.join(build_dir, "distribution.xml"))
+        command.append("distribution.xml")
         command.append(
             os.path.join(
                 pkg_dir, "PRProjector-{0}-{1}.pkg".format(target["cpu"], target["mode"])
@@ -349,4 +349,4 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, shell=True)
+        check_call(command, cwd=build_dir, shell=True)
