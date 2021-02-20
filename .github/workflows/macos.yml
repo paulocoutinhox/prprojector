@@ -41,6 +41,7 @@ jobs:
       uses: apple-actions/import-codesign-certs@v1
       with: 
         keychain: ${{ github.run_id }}
+        keychain-password: ${{ github.run_id }}
         p12-file-base64: ${{ secrets.MAC_APPLICATION_CERTIFICATE_P12 }}
         p12-password: ${{ secrets.MAC_APPLICATION_CERTIFICATE_PASSPHRASE }}
 
@@ -48,6 +49,7 @@ jobs:
       uses: apple-actions/import-codesign-certs@v1
       with: 
         keychain: ${{ github.run_id }}
+        keychain-password: ${{ github.run_id }}
         create-keychain: false
         p12-file-base64: ${{ secrets.MAC_INSTALLER_CERTIFICATE_P12 }}
         p12-password: ${{ secrets.MAC_INSTALLER_CERTIFICATE_PASSPHRASE }}
