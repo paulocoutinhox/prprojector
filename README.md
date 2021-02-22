@@ -1,9 +1,7 @@
 # PRProjector
 
 [![Build - macOS](https://github.com/paulo-coutinho/prprojector/actions/workflows/macos.yml/badge.svg?branch=master)](https://github.com/paulo-coutinho/prprojector/actions/workflows/macos.yml)
-
 [![Build - Windows x86](https://github.com/paulo-coutinho/prprojector/actions/workflows/win32.yml/badge.svg?branch=master)](https://github.com/paulo-coutinho/prprojector/actions/workflows/win32.yml)
-
 [![Build - Windows x64](https://github.com/paulo-coutinho/prprojector/actions/workflows/win64.yml/badge.svg?branch=master)](https://github.com/paulo-coutinho/prprojector/actions/workflows/win64.yml)
 
 Software to show images, videos, texts and lyrics on datashow or any external monitor and display.
