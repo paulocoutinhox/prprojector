@@ -61,7 +61,7 @@ jobs:
         - name: Load
           uses: actions/download-artifact@v2
           with:
-            name: artifact-windows-x64
+            name: artifact-win64
         - name: Get release
           id: get_release
           uses: bruceadams/get-release@v1.2.2
