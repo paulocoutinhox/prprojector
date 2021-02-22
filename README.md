@@ -15,8 +15,9 @@ Get your version on release page.
 ## Requirements to build
 
 - Python 3
+- PIP
 
-## How to build
+## How to build for macOS (x64)
 
 1 - Install python requirements:
 
@@ -28,12 +29,32 @@ pip install -r requirements.txt
 
 ```
 python make.py run build-macos
+```
 
-or
+## How to build for Windows (x86)
 
-python make.py run build-linux
+1 - Install python requirements:
 
-or
+```
+pip install -r requirements.txt
+```
 
-python make.py run build-windows
+2 - Call build for your platform:
+
+```
+python make.py run build-win32
+```
+
+## How to build for Windows (x64)
+
+1 - Install python requirements:
+
+```
+pip install -r requirements.txt
+```
+
+2 - Call build for your platform:
+
+```
+python make.py run build-win64
 ```
