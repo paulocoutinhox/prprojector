@@ -1,9 +1,9 @@
 import os
-import pwd
 import shutil
 import stat
 import sys
 import tarfile
+import zipfile
 import glob
 import urllib.parse as urlparse
 import urllib.request as urllib2
@@ -147,6 +147,22 @@ def make_tarfile_from_list(output_filename, paths):
     tar.close()
 
 
+def make_zipfile(output_filename, source_dir):
+    relroot = os.path.abspath(os.path.join(source_dir, os.pardir))
+
+    with zipfile.ZipFile(output_filename, "w", zipfile.ZIP_DEFLATED) as zip:
+        for root, dirs, files in os.walk(source_dir):
+            # add directory (needed for empty dirs)
+            zip.write(root, os.path.relpath(root, relroot))
+
+            for file in files:
+                filename = os.path.join(root, file)
+
+                if os.path.isfile(filename):  # regular files only
+                    arcname = os.path.join(os.path.relpath(root, relroot), file)
+                    zip.write(filename, arcname)
+
+
 def write_to_file(dirname, filename, content):
     full_file_path = os.path.join(dirname, filename)
     remove_file(full_file_path)
@@ -182,11 +198,6 @@ def find_files_regexp(directory, pattern):
     ]
 
     return files
-
-
-def is_test_user():
-    user = pwd.getpwuid(os.getuid())[0]
-    return user == "paulo"
 
 
 def file_has_content(file, content):

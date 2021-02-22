@@ -25,6 +25,8 @@ Tasks:
 
   - build-qt  
   - build-macos
+  - build-win32
+  - build-win64
 
 """
 
@@ -34,6 +36,7 @@ import modules.common as common
 import modules.functions as f
 import modules.config as c
 import modules.macos as macos
+import modules.windows as windows
 
 
 def main(options):
@@ -78,6 +81,18 @@ def main(options):
     # build macos
     elif make_task == "build-macos":
         macos.run_task_build()
+
+    #######################
+    # windows
+    #######################
+
+    # build windows (x64)
+    elif make_task == "build-win64":
+        windows.run_task_build(c.targets_win64)
+
+    # build windows (x32)
+    elif make_task == "build-win32":
+        windows.run_task_build(c.targets_win32)
 
     #######################
     # Invalid

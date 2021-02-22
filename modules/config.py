@@ -25,3 +25,24 @@ targets_macos = [
         "qt_dir": "clang_64",
     },
 ]
+
+# windows
+targets_win32 = [
+    {
+        "name": "windows",
+        "cpu": "x86",
+        "mode": "release",
+        "qt_platform": "windows desktop win32_msvc2019",
+        "qt_dir": "msvc2019",
+    },
+]
+
+targets_win64 = [
+    {
+        "name": "windows",
+        "cpu": "x64",
+        "mode": "release",
+        "qt_platform": "windows desktop win64_msvc2019_64",
+        "qt_dir": "msvc2019_64",
+    },
+]
