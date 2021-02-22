@@ -38,7 +38,9 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Configure Visual Studio
-      run: call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64
+      uses: ilammy/msvc-dev-cmd@v1.5.0
+      with:
+          arch: x64
 
     - name: Build
       run: python make.py run build-${{ matrix.config.target }}
