@@ -29,7 +29,7 @@ targets_macos = [
 # windows
 targets_win32 = [
     {
-        "name": "windows",
+        "name": "win32",
         "cpu": "x86",
         "mode": "release",
         "qt_platform": "windows desktop win32_msvc2019",
@@ -39,7 +39,7 @@ targets_win32 = [
 
 targets_win64 = [
     {
-        "name": "windows",
+        "name": "win64",
         "cpu": "x64",
         "mode": "release",
         "qt_platform": "windows desktop win64_msvc2019_64",

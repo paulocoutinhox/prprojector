@@ -142,7 +142,7 @@ def run_task_build(config):
 
         # distribute package
         f.debug(
-            'Distributing package (.pkg) to arch "{0}" and mode "{1}"...'.format(
+            'Distributing package (.zip) to arch "{0}" and mode "{1}"...'.format(
                 target["cpu"], target["mode"]
             )
         )
