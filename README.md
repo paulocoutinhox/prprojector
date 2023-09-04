@@ -22,13 +22,13 @@ Get your version on release page.
 1 - Install python requirements:
 
 ```
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 2 - Call build for your platform:
 
 ```
-python make.py run build-macos
+python3 make.py run build-macos
 ```
 
 ## How to build for Windows (x86)
@@ -36,13 +36,13 @@ python make.py run build-macos
 1 - Install python requirements:
 
 ```
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 2 - Call build for your platform:
 
 ```
-python make.py run build-win32
+python3 make.py run build-win32
 ```
 
 ## How to build for Windows (x64)
@@ -50,11 +50,11 @@ python make.py run build-win32
 1 - Install python requirements:
 
 ```
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 2 - Call build for your platform:
 
 ```
-python make.py run build-win64
+python3 make.py run build-win64
 ```
