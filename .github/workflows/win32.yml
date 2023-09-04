@@ -20,7 +20,7 @@ jobs:
             os: windows-latest,
             target: "win32"
           }
-        python-version: [3.10]
+        python-version: ["3.10"]
 
     steps:
     - uses: actions/checkout@v2
