@@ -6,7 +6,9 @@
 
 Software to show images, videos, texts and lyrics on datashow or any external monitor and display.
 
-<p align="center"><a href="https://github.com/paulocoutinhox/prprojector" target="_blank" rel="noopener noreferrer"><img src="extras/screenshots/screenshot1.png" alt="screenshot 1"></a></p>
+<p align="center"><a href="https://github.com/paulocoutinhox/prprojector" target="_blank" rel="noopener noreferrer"><img src="extras/screenshots/screenshot1.png" alt="screenshot 1" width="300"></a></p>
+
+<p align="center"><a href="https://github.com/paulocoutinhox/prprojector" target="_blank" rel="noopener noreferrer"><img src="extras/screenshots/screenshot2.png" alt="screenshot 2" width="300"></a></p>
 
 ## Download
 
