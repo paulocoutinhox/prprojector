@@ -1,7 +1,7 @@
 import glob
 import os
 import tarfile
-from subprocess import check_call
+from subprocess import check_output
 
 import modules.config as c
 import modules.functions as f
@@ -38,7 +38,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, shell=True)
+        check_output(command, shell=True)
 
         # qt tools
         qt_dir = os.path.join(
@@ -72,7 +72,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, cwd=build_dir, shell=True)
+        check_output(command, cwd=build_dir, shell=True)
 
         # makefile
         command = []
@@ -82,7 +82,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, cwd=build_dir, shell=True)
+        check_output(command, cwd=build_dir, shell=True)
 
         # compile
         f.debug(
@@ -96,7 +96,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, cwd=build_dir, shell=True)
+        check_output(command, cwd=build_dir, shell=True)
 
         # plist
         f.debug(
@@ -129,7 +129,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, shell=True)
+        check_output(command, shell=True)
 
         # copy all frameworks
         macdeployqt_file = os.path.join(qt_bin_dir, "macdeployqt")
@@ -147,7 +147,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, shell=True)
+        check_output(command, shell=True)
 
         # codesign frameworks
         f.debug(
@@ -179,7 +179,7 @@ def run_task_build():
 
             command = " ".join(command)
 
-            check_call(command, shell=True)
+            check_output(command, shell=True)
 
         # codesign plugins
         f.debug(
@@ -209,7 +209,7 @@ def run_task_build():
 
             command = " ".join(command)
 
-            check_call(command, shell=True)
+            check_output(command, shell=True)
 
         # codesign application
         f.debug(
@@ -230,7 +230,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, shell=True)
+        check_output(command, shell=True)
 
         # isolate
         f.debug(
@@ -265,7 +265,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, shell=True)
+        check_output(command, shell=True)
 
         # fix install location
         f.debug(
@@ -284,7 +284,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, shell=True)
+        check_output(command, shell=True)
 
         # build package
         f.debug(
@@ -309,7 +309,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, shell=True)
+        check_output(command, shell=True)
 
         # synthesize
         f.debug(
@@ -327,7 +327,7 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, cwd=build_dir, shell=True)
+        check_output(command, cwd=build_dir, shell=True)
 
         # distribute package
         f.debug(
@@ -351,4 +351,4 @@ def run_task_build():
 
         command = " ".join(command)
 
-        check_call(command, cwd=build_dir, shell=True)
+        check_output(command, cwd=build_dir, shell=True)
