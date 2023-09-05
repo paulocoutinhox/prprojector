@@ -40,7 +40,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        run(command, shell=True, check=True, capture_output=True)
+        run(command, shell=True, check=True)
 
         # qt tools
         qt_dir = os.path.join(
@@ -74,7 +74,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        run(command, cwd=build_dir, shell=True, check=True, capture_output=True)
+        run(command, cwd=build_dir, shell=True, check=True)
 
         # makefile
         command = []
@@ -84,7 +84,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        run(command, cwd=build_dir, shell=True, check=True, capture_output=True)
+        run(command, cwd=build_dir, shell=True, check=True)
 
         # compile
         f.debug(
@@ -98,7 +98,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        run(command, cwd=build_dir, shell=True, check=True, capture_output=True)
+        run(command, cwd=build_dir, shell=True, check=True)
 
         # copy all frameworks
         out_dir = os.path.join(build_dir, target["mode"], "out")
@@ -126,7 +126,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        run(command, shell=True, check=True, capture_output=True)
+        run(command, shell=True, check=True)
 
         # copy executable
         f.debug(
