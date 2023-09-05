@@ -43,7 +43,7 @@ jobs:
       run: python3 -m pip install -r requirements.txt
 
     - name: Install application certificate
-      uses: apple-actions/import-codesign-certs@v1
+      uses: apple-actions/import-codesign-certs@v2
       with: 
         keychain: ${{ github.run_id }}
         keychain-password: ${{ github.run_id }}
@@ -51,7 +51,7 @@ jobs:
         p12-password: ${{ secrets.MAC_APPLICATION_CERTIFICATE_PASSPHRASE }}
 
     - name: Install installer certificate
-      uses: apple-actions/import-codesign-certs@v1
+      uses: apple-actions/import-codesign-certs@v2
       with: 
         keychain: ${{ github.run_id }}
         keychain-password: ${{ github.run_id }}

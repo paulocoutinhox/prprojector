@@ -10,7 +10,7 @@ macos_pkg_version = "1.0.0"
 macos_identifier = "com.prsolucoes.prprojector"
 
 macos_dist_certificate_name = (
-    "3rd Party Mac Developer Application: Paulo Coutinho (99AHAA343Q)"
+    "Apple Distribution: Paulo Coutinho (99AHAA343Q)"
 )
 macos_installer_certificate_name = (
     "3rd Party Mac Developer Installer: Paulo Coutinho (99AHAA343Q)"

@@ -58,3 +58,11 @@ python3 -m pip install -r requirements.txt
 ```
 python3 make.py run build-win64
 ```
+
+## How to encode certificates on macOS
+
+Run on terminal:
+
+```
+base64 -i <certificate_name>.p12 | pbcopy
+```
