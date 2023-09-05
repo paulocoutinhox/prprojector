@@ -1,5 +1,5 @@
 import os
-from subprocess import check_output
+from subprocess import run
 
 import modules.config as c
 import modules.functions as f
@@ -40,7 +40,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        check_output(command, shell=True)
+        run(command, shell=True, check=True, capture_output=True)
 
         # qt tools
         qt_dir = os.path.join(
@@ -74,7 +74,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        check_output(command, cwd=build_dir, shell=True)
+        run(command, cwd=build_dir, shell=True, check=True, capture_output=True)
 
         # makefile
         command = []
@@ -84,7 +84,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        check_output(command, cwd=build_dir, shell=True)
+        run(command, cwd=build_dir, shell=True, check=True, capture_output=True)
 
         # compile
         f.debug(
@@ -98,7 +98,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        check_output(command, cwd=build_dir, shell=True)
+        run(command, cwd=build_dir, shell=True, check=True, capture_output=True)
 
         # copy all frameworks
         out_dir = os.path.join(build_dir, target["mode"], "out")
@@ -126,7 +126,7 @@ def run_task_build(config):
 
         command = " ".join(command)
 
-        check_output(command, shell=True)
+        run(command, shell=True, check=True, capture_output=True)
 
         # copy executable
         f.debug(
