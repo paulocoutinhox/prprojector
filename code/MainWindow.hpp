@@ -5,14 +5,13 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QTextStream>
-#include <QDesktopWidget>
+#include <QGuiApplication>
 #include <QListWidgetItem>
 #include <QColorDialog>
 #include <QFileDialog>
 #include <QTimer>
 #include <QDate>
 #include <QMediaPlayer>
-#include "QMediaPlaylist"
 
 #include "ProjectorScreen.hpp"
 #include "Configurations.hpp"
@@ -93,7 +92,6 @@ private:
     QTimer *timerToChangeLiveContent;
     QTimer *timerToRegister;
     QMediaPlayer *videoPlayer;
-    QMediaPlaylist *playlist;
 
     void sendSongTextToProjector(bool showMessageOnError = true);
     bool canShowProjector(bool showMessageOnError = true);

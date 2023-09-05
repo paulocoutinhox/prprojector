@@ -6,7 +6,7 @@
 #include <QResizeEvent>
 #include <QGraphicsDropShadowEffect>
 #include <QColor>
-#include <QDesktopWidget>
+#include <QGuiApplication>
 #include <QPalette>
 #include <QGraphicsPixmapItem>
 #include <QQuickView>

@@ -2,7 +2,7 @@
 #define DIALOGABOUTPROJECTDIR_H
 
 #include <QDialog>
-#include <QDesktopWidget>
+#include <QGuiApplication>
 
 namespace Ui {
 class DialogAboutProjectDir;

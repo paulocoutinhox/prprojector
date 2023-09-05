@@ -1,6 +1,7 @@
 #include "ProjectorScreen.hpp"
 #include "QGuiApplication"
 #include "QScreen"
+#include "QFile"
 
 ProjectorScreen *ProjectorScreen::instance = nullptr;
 
@@ -30,7 +31,7 @@ ProjectorScreen *ProjectorScreen::getInstance()
 }
 
 void ProjectorScreen::renderText(const QString &text)
-{    
+{
     QQuickItem *rootObject = qmlView->rootObject();
     QObject *renderText = rootObject->findChild<QObject *>("renderText");
     renderText->setProperty("text", text);
@@ -65,7 +66,7 @@ void ProjectorScreen::showScreen()
 }
 
 void ProjectorScreen::updateTextConfigurations(const QString &textColor, const QString &outlineColor, int size, bool autoFit)
-{    
+{
     QQuickItem *rootObject = qmlView->rootObject();
     QObject *renderText = rootObject->findChild<QObject *>("renderText");
 
@@ -110,7 +111,7 @@ void ProjectorScreen::setBackgroundImage(const QString &filePath)
         backgroundImage->setProperty("visible", true);
     }
     else
-    {       
+    {
         QObject *backgroundImage = rootObject->findChild<QObject *>("backgroundImage");
         backgroundImage->setProperty("source", "");
         backgroundImage->setProperty("visible", false);

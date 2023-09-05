@@ -32,23 +32,28 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <QDateTime>
 #include <QCryptographicHash>
 #include <QDataStream>
+#include <QIODevice>
 
-SimpleCrypt::SimpleCrypt():
-    m_key(0),
-    m_compressionMode(CompressionAuto),
-    m_protectionMode(ProtectionChecksum),
-    m_lastError(ErrorNoError)
+#include <cstdlib>
+
+SimpleCrypt::SimpleCrypt()
+    : m_key(0),
+      m_compressionMode(CompressionAuto),
+      m_protectionMode(ProtectionChecksum),
+      m_lastError(ErrorNoError)
 {
-    qsrand(uint(QDateTime::currentMSecsSinceEpoch() & 0xFFFF));
+    unsigned int seed = static_cast<unsigned int>(QDateTime::currentMSecsSinceEpoch() & 0xFFFF);
+    std::srand(seed);
 }
 
-SimpleCrypt::SimpleCrypt(quint64 key):
-    m_key(key),
-    m_compressionMode(CompressionAuto),
-    m_protectionMode(ProtectionChecksum),
-    m_lastError(ErrorNoError)
+SimpleCrypt::SimpleCrypt(quint64 key)
+    : m_key(key),
+      m_compressionMode(CompressionAuto),
+      m_protectionMode(ProtectionChecksum),
+      m_lastError(ErrorNoError)
 {
-    qsrand(uint(QDateTime::currentMSecsSinceEpoch() & 0xFFFF));
+    unsigned int seed = static_cast<unsigned int>(QDateTime::currentMSecsSinceEpoch() & 0xFFFF);
+    std::srand(seed);
     splitKey();
 }
 
@@ -114,8 +119,8 @@ QByteArray SimpleCrypt::encryptToByteArray(QByteArray plaintext)
     }
 
     //prepend a random char to the string
-    char randomChar = char(qrand() & 0xFF);
-    ba = randomChar + integrityProtection + ba;
+    char randomChar = static_cast<char>(std::rand() & 0xFF);
+    ba = QByteArray(1, randomChar) + integrityProtection + ba;
 
     int pos(0);
     char lastChar(0);

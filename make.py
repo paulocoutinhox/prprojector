@@ -8,13 +8,14 @@ Usage:
   make.py run <task-name>
   make.py run <task-name> [options]
   make.py [options]
-  make.py -h | --help  
+  make.py -h | --help
 
 Options:
   -h --help                         Show this screen
   -d --debug                        Enable debug mode
   --version                         Show version
   --platform PLATFORM               Set qt platform to download
+  --arch ARCH                       Set qt arch to download
 
 Examples:
   python make.py -h
@@ -23,7 +24,7 @@ Tasks:
   - format
   - clean
 
-  - build-qt  
+  - build-qt
   - build-macos
   - build-win32
   - build-win64

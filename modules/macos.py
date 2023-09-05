@@ -33,6 +33,8 @@ def run_task_build():
         command.append("build-qt")
         command.append("--platform")
         command.append('"{0}"'.format(target["qt_platform"]))
+        command.append("--arch")
+        command.append('"{0}"'.format(target["qt_arch"]))
 
         command = " ".join(command)
 

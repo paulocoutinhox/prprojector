@@ -1,28 +1,25 @@
-import QtQuick 2.2
-import QtMultimedia 5.2
-import QtGraphicalEffects 1.0
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtMultimedia 6.0
+import Qt5Compat.GraphicalEffects
 
 Item {
 
-    function stopBackgroundVideo()
-    {
+    function stopBackgroundVideo() {
         backgroundVideoOutput.visible = false;
         backgroundVideo.stop();
     }
 
-    function startBackgroundVideo()
-    {
+    function startBackgroundVideo() {
         backgroundVideo.play();
         backgroundVideoOutput.visible = true;
     }
 
-    function loadBackgroundImage(fullFilePath)
-    {
+    function loadBackgroundImage(fullFilePath) {
         backgroundImage.source = fullFilePath;
     }
 
-    function loadBackgroundVideo(fullFilePath)
-    {
+    function loadBackgroundVideo(fullFilePath) {
         backgroundVideo.source = fullFilePath;
     }
 
@@ -39,17 +36,19 @@ Item {
         source: ""
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        anchors.fill: parent;
+        anchors.fill: parent
+        fillMode: Image.PreserveAspectCrop
     }
 
     MediaPlayer {
         id: backgroundVideo
         objectName: "backgroundVideo"
-        autoPlay: false
-        autoLoad: false
-        loops: Animation.Infinite
-        volume: 0
-        onError: {
+        loops: MediaPlayer.Infinite
+        videoOutput: backgroundVideoOutput
+        audioOutput: AudioOutput {
+            volume: 0
+        }
+        onErrorOccurred: {
             console.log("Player Error");
             stopBackgroundVideo();
         }
@@ -62,9 +61,6 @@ Item {
                 console.log("Player Stopped");
             }
         }
-        onStatusChanged: {
-            console.log("ST: " + status);
-        }
         onDurationChanged: {
             console.log("DUR: " + duration);
         }
@@ -75,14 +71,11 @@ Item {
 
         objectName: "backgroundVideoOutput"
         id: backgroundVideoOutput
-        source: backgroundVideo
 
         anchors.fill: parent
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
-        anchors.centerIn: parent
-
-        fillMode: (stretch == true ? VideoOutput.Stretch : VideoOutput.PreserveAspectFit)
+        fillMode: (stretch == true ? VideoOutput.PreserveAspectCrop : VideoOutput.PreserveAspectFit)
     }
 
     Text {
@@ -97,7 +90,6 @@ Item {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         anchors.fill: parent
-        anchors.centerIn: parent
         visible: false
         fontSizeMode: (autoFit == true ? Text.Fit : Text.Normal)
     }
@@ -111,5 +103,4 @@ Item {
         source: renderText
         anchors.fill: renderText
     }
-
 }

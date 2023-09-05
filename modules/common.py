@@ -14,6 +14,11 @@ def run_task_build_qt(options):
     if not qt_platform:
         f.error("Parameter --platform was not defined")
 
+    qt_arch = options["--arch"] if "--arch" in options else None
+
+    if not qt_platform:
+        f.error("Parameter --arch was not defined")
+
     build_dir = os.path.join("build")
     f.create_dir(build_dir)
 
@@ -23,11 +28,14 @@ def run_task_build_qt(options):
 
     command = []
     command.append("aqt")
-    command.append("install")
+    command.append("install-qt")
     command.append("-O")
     command.append(qt_dir)
-    command.append(c.qt_version)
     command.append(qt_platform)
+    command.append(c.qt_version)
+    command.append(qt_arch)
+    command.append("-m")
+    command.append("all")
 
     command = " ".join(command)
 

@@ -24,7 +24,7 @@ Configurations *Configurations::getInstance()
 
 void Configurations::load()
 {
-    const QString dataFolder = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    const QString dataFolder = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     const QString settingsFile = dataFolder + "/settings.ini";
     QSettings settings(settingsFile, QSettings::IniFormat);
 
@@ -35,12 +35,12 @@ void Configurations::load()
     setTextSize(40);
     setProjectDir(settings.value("Project/path").toString());
     setTextAutoFit(true);
-    setVideoStretch(true);    
+    setVideoStretch(true);
 }
 
 void Configurations::save()
 {
-    const QString dataFolder = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+    const QString dataFolder = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     const QString settingsFile = dataFolder + "/settings.ini";
     QSettings settings(settingsFile, QSettings::IniFormat);
 

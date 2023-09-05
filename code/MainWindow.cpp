@@ -1,6 +1,8 @@
 #include "MainWindow.hpp"
 #include "ui_MainWindow.h"
 #include "QGuiApplication"
+#include "QAudioOutput"
+#include "QAudioDevice"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -12,9 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     videoPlayer = new QMediaPlayer;
     videoPlayer->setVideoOutput(ui->wiVideoPreview);
-    videoPlayer->setVolume(0);
 
-    playlist = new QMediaPlaylist();
+    auto audioOut = new QAudioOutput;
+    audioOut->setVolume(0.0);
+    videoPlayer->setAudioOutput(audioOut);
 
     ui->tabWidget->setCurrentIndex(0);
 
@@ -596,7 +599,7 @@ void MainWindow::addSelectedSongToPreview()
                     else
                     {
                         QTextStream in(&file);
-                        in.setCodec("UTF-8");
+                        in.setEncoding(QStringConverter::Utf8);
                         QString verse = QString();
 
                         while(!in.atEnd())
@@ -673,7 +676,7 @@ void MainWindow::on_btRemoveSelectedSong_released()
         {
             ui->lvSelectedSongs->setUpdatesEnabled(false);
             QModelIndexList indexes = ui->lvSelectedSongs->selectionModel()->selectedIndexes();
-            qSort(indexes.begin(), indexes.end());
+            std::sort(indexes.begin(), indexes.end());
 
             for(int i = indexes.count() - 1; i > -1; --i)
             {
@@ -828,12 +831,7 @@ void MainWindow::showSelectedBackgroundVideoOnPreview()
             if (selectedBackGroundFile.exists())
             {
                 videoPlayer->stop();
-
-                playlist->clear();
-                playlist->addMedia(QUrl::fromLocalFile(selectedBackGroundImageFilePath));
-                playlist->setPlaybackMode(QMediaPlaylist::Loop);
-
-                videoPlayer->setPlaylist(playlist);
+                videoPlayer->setSource(QUrl::fromLocalFile(selectedBackGroundImageFilePath));
                 videoPlayer->play();
             }
             else
@@ -888,7 +886,7 @@ void MainWindow::getRegisterData()
         if (file.open(QIODevice::ReadOnly))
         {
             QTextStream in(&file);
-            in.setCodec("UTF-8");
+            in.setEncoding(QStringConverter::Utf8);
             QString licenseData;
 
             while(!in.atEnd())

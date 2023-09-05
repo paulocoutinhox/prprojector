@@ -1,5 +1,6 @@
 #include "DialogAddOrUpdateSong.hpp"
 #include "ui_DialogAddOrUpdateSong.h"
+#include "QRegularExpression"
 
 DialogAddOrUpdateSong::DialogAddOrUpdateSong(QWidget *parent) :
     QDialog(parent),
@@ -27,7 +28,7 @@ void DialogAddOrUpdateSong::setFilename(QString &filename)
     if (file.open(QIODevice::ReadOnly))
     {
         QTextStream in(&file);
-        in.setCodec("UTF-8");
+        in.setEncoding(QStringConverter::Utf8);
         QString lines = in.readAll();
         ui->edContent->insertPlainText(lines);
         file.close();
@@ -55,7 +56,7 @@ void DialogAddOrUpdateSong::updateFile()
 
     bool store = false;
 
-    if (this->title == NULL || this->title.isEmpty())
+    if (this->title == nullptr || this->title.isEmpty())
     {
         QMessageBox::critical(this, "Mensagem", "Informe o título da música. Este título também será usado como o nome do arquivo.");
         return;
@@ -72,7 +73,7 @@ void DialogAddOrUpdateSong::updateFile()
         if (file.open(QIODevice::WriteOnly | QIODevice::Text))
         {
             QTextStream out(&file);
-            out.setCodec("UTF-8");
+            out.setEncoding(QStringConverter::Utf8);
             out << ui->edContent->toPlainText();
             file.close();
             close();
@@ -87,7 +88,7 @@ void DialogAddOrUpdateSong::updateFile()
 void DialogAddOrUpdateSong::formatText()
 {
     QString originalText = ui->edContent->toPlainText();
-    QStringList originalTextLines = originalText.split(QRegExp("\n|\r\n|\r"));
+    QStringList originalTextLines = originalText.split(QRegularExpression("[\n\r\n\r]+"));
     QStringList originalWords = QStringList();
     QStringList newTextLines = QStringList();
     QString newLine = "[NEW-LINE]";
@@ -106,7 +107,7 @@ void DialogAddOrUpdateSong::formatText()
         }
         else
         {
-            QStringList words = originalTextLine.split(QRegExp("(\\s)+"), QString::SkipEmptyParts);
+            QStringList words = originalTextLine.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
             originalWords.append(words);
         }
     }
