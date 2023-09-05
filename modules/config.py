@@ -3,11 +3,11 @@ make_debug = False
 make_task = ""
 
 # qt
-qt_version = "5.15.2"
+qt_version = "5.15.4"
 
 # macos
-macos_pkg_version = "1.0.0"
-macos_identifier = "com.prsolucoes.prprojector"
+macos_pkg_version = "1.0.1"
+macos_identifier = "com.paulocoutinho.prprojector"
 
 macos_dist_certificate_name = "Apple Distribution: Paulo Coutinho (99AHAA343Q)"
 macos_installer_certificate_name = (

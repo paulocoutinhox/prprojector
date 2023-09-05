@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     timerToChangeLiveContent = nullptr;
 
-    ui->setupUi(this);    
+    ui->setupUi(this);
 
     videoPlayer = new QMediaPlayer;
     videoPlayer->setVideoOutput(ui->wiVideoPreview);
@@ -987,7 +987,7 @@ void MainWindow::setRegisterDataOnDialogRegister()
             registerInformation.append("\n");
         }
 
-        registerInformation.append("Você pode comprar uma nova licença ou renovar uma licença existente que você possua, através do site http://www.prsolucoes.com. Em caso de dúvidas acesse o formulário de contato em nosso site.");
+        registerInformation.append("Você pode comprar uma nova licença ou renovar uma licença existente que você possua, através do site https://github.com/paulocoutinhox. Em caso de dúvidas acesse o formulário de contato em nosso site.");
     }
 
     dialog->setRegisterInformationText(registerInformation);
@@ -1068,7 +1068,7 @@ void MainWindow::on_btUpdateSong_released()
                     DialogAddOrUpdateSong *dialog = new DialogAddOrUpdateSong();
                     dialog->setMethod(2);
                     dialog->setFilename(filename);
-                    dialog->show();                    
+                    dialog->show();
                 }
             }
         }
