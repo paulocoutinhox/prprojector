@@ -64,5 +64,8 @@ python3 make.py run build-win64
 Run on terminal:
 
 ```
-base64 -i <certificate_name>.p12 | pbcopy
+base64 -i distribution.p12 | pbcopy
+base64 -i mac_installer.p12 | pbcopy
 ```
+
+On certificate type is "Apple Distribution" and the other is "Mac Installer Distribution".
