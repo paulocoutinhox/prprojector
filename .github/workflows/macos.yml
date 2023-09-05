@@ -29,7 +29,7 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    
+
     - name: Upgrade PIP
       run: python3 -m pip install --upgrade pip setuptools wheel
 
@@ -44,7 +44,7 @@ jobs:
 
     - name: Install application certificate
       uses: apple-actions/import-codesign-certs@v2
-      with: 
+      with:
         keychain: ${{ github.run_id }}
         keychain-password: ${{ github.run_id }}
         p12-file-base64: ${{ secrets.MAC_APPLICATION_CERTIFICATE_P12 }}
@@ -52,7 +52,7 @@ jobs:
 
     - name: Install installer certificate
       uses: apple-actions/import-codesign-certs@v2
-      with: 
+      with:
         keychain: ${{ github.run_id }}
         keychain-password: ${{ github.run_id }}
         create-keychain: false
