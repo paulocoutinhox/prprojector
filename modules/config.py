@@ -26,20 +26,20 @@ targets_macos = [
 ]
 
 # windows
-targets_win32 = [
+targets_win_arm64 = [
     {
-        "name": "win32",
-        "cpu": "x86",
+        "name": "win_arm64",
+        "cpu": "arm64",
         "mode": "release",
         "qt_platform": "windows desktop",
-        "qt_dir": "msvc2019",
-        "qt_arch": "win32_msvc2019",
+        "qt_dir": "msvc2019_arm64",
+        "qt_arch": "win64_msvc2019_arm64",
     },
 ]
 
-targets_win64 = [
+targets_win_x64 = [
     {
-        "name": "win64",
+        "name": "win_x64",
         "cpu": "x64",
         "mode": "release",
         "qt_platform": "windows desktop",

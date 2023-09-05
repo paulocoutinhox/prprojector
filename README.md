@@ -1,8 +1,8 @@
 # PRProjector
 
 [![Build - macOS](https://github.com/paulocoutinhox/prprojector/actions/workflows/macos.yml/badge.svg?branch=master)](https://github.com/paulocoutinhox/prprojector/actions/workflows/macos.yml)
-[![Build - Windows x86](https://github.com/paulocoutinhox/prprojector/actions/workflows/win32.yml/badge.svg?branch=master)](https://github.com/paulocoutinhox/prprojector/actions/workflows/win32.yml)
-[![Build - Windows x64](https://github.com/paulocoutinhox/prprojector/actions/workflows/win64.yml/badge.svg?branch=master)](https://github.com/paulocoutinhox/prprojector/actions/workflows/win64.yml)
+[![Build - Windows x64](https://github.com/paulocoutinhox/prprojector/actions/workflows/win-x64.yml/badge.svg?branch=master)](https://github.com/paulocoutinhox/prprojector/actions/workflows/win-x64.yml)
+[![Build - Windows arm64](https://github.com/paulocoutinhox/prprojector/actions/workflows/win-arm64.yml/badge.svg?branch=master)](https://github.com/paulocoutinhox/prprojector/actions/workflows/win-arm64.yml)
 
 Software to show images, videos, texts and lyrics on datashow or any external monitor and display.
 
@@ -31,20 +31,6 @@ python3 -m pip install -r requirements.txt
 python3 make.py run build-macos
 ```
 
-## How to build for Windows (x86)
-
-1 - Install python requirements:
-
-```
-python3 -m pip install -r requirements.txt
-```
-
-2 - Call build for your platform:
-
-```
-python3 make.py run build-win32
-```
-
 ## How to build for Windows (x64)
 
 1 - Install python requirements:
@@ -56,7 +42,21 @@ python3 -m pip install -r requirements.txt
 2 - Call build for your platform:
 
 ```
-python3 make.py run build-win64
+python3 make.py run build-win-x64
+```
+
+## How to build for Windows (arm64)
+
+1 - Install python requirements:
+
+```
+python3 -m pip install -r requirements.txt
+```
+
+2 - Call build for your platform:
+
+```
+python3 make.py run build-win-arm64
 ```
 
 ## How to encode certificates on macOS

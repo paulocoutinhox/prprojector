@@ -1,6 +1,4 @@
-import glob
 import os
-import tarfile
 from subprocess import check_call
 
 import modules.config as c
