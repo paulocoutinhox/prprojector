@@ -38,7 +38,7 @@ def run_task_build(config):
         command.append("--arch")
         command.append('"{0}"'.format(target["qt_arch"]))
         command.append("--out")
-        command.append(os.path.join('C:', 'Qt'))
+        command.append(os.path.join("C:", "Qt"))
 
         command = " ".join(command)
 

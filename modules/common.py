@@ -1,6 +1,6 @@
 import os
 import subprocess
-from subprocess import check_call
+from subprocess import run
 
 import modules.config as c
 import modules.functions as f
@@ -8,6 +8,9 @@ import modules.functions as f
 
 def run_task_build_qt(options):
     f.debug("Building Qt...")
+
+    build_dir = os.path.join("build")
+    f.create_dir(build_dir)
 
     qt_platform = options["--platform"] if "--platform" in options else None
 
@@ -28,9 +31,6 @@ def run_task_build_qt(options):
 
     f.debug(f"Out directory: {qt_out}")
 
-    build_dir = os.path.join("build")
-    f.create_dir(build_dir)
-
     command = []
     command.append("aqt")
     command.append("install-qt")
@@ -44,7 +44,7 @@ def run_task_build_qt(options):
 
     command = " ".join(command)
 
-    check_call(command, shell=True)
+    run(command, shell=True, check=True)
 
 
 def run_task_clean():
@@ -86,7 +86,7 @@ def run_task_format():
             "make.py",
         ]
     )
-    check_call(command, shell=True)
+    run(command, shell=True, check=True)
 
     # modules
     command = " ".join(
@@ -95,6 +95,6 @@ def run_task_format():
             "modules/",
         ]
     )
-    check_call(command, shell=True)
+    run(command, shell=True, check=True)
 
     f.debug("Finished")
