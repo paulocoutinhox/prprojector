@@ -25,13 +25,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Symlink target to C:\
-      if: ${{ runner.os == 'Windows' }}
-      shell: powershell
-      run: |
-        New-Item -ItemType Directory -Force -Path C:\spacedrive_target
-        New-Item -Path target -ItemType Junction -Value C:\spacedrive_target
-
     - name: Set up python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
