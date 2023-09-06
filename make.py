@@ -16,6 +16,7 @@ Options:
   --version                         Show version
   --platform PLATFORM               Set qt platform to download
   --arch ARCH                       Set qt arch to download
+  --out OUTPUT                      Set qt output directory to download
 
 Examples:
   python make.py -h
@@ -33,8 +34,8 @@ Tasks:
 from docopt import docopt
 
 import modules.common as common
-import modules.functions as f
 import modules.config as c
+import modules.functions as f
 import modules.macos as macos
 import modules.windows as windows
 

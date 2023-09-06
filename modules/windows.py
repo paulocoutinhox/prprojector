@@ -38,14 +38,14 @@ def run_task_build(config):
         command.append("--arch")
         command.append('"{0}"'.format(target["qt_arch"]))
         command.append("--out")
-        command.append(os.path.join("C:", "Qt"))
+        command.append(os.path.join("C:\\", "Qt"))
 
         command = " ".join(command)
 
         run(command, shell=True, check=True)
 
         # qt tools
-        qt_dir = os.path.join("C:", "Qt", c.qt_version, target["qt_dir"])
+        qt_dir = os.path.join("C:\\", "Qt", c.qt_version, target["qt_dir"])
         qt_bin_dir = os.path.join(qt_dir, "bin")
         qmake_file = os.path.join(qt_bin_dir, "qmake")
 
