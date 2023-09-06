@@ -45,9 +45,7 @@ def run_task_build(config):
         run(command, shell=True, check=True)
 
         # qt tools
-        qt_dir = os.path.join(
-            current_dir, "build", "qt", c.qt_version, target["qt_dir"]
-        )
+        qt_dir = os.path.join("C:", "Qt", c.qt_version, target["qt_dir"])
         qt_bin_dir = os.path.join(qt_dir, "bin")
         qmake_file = os.path.join(qt_bin_dir, "qmake")
 
