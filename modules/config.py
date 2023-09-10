@@ -33,7 +33,7 @@ targets_win_arm64 = [
         "mode": "release",
         "qt_platform": "windows desktop",
         "qt_dir": "msvc2019_arm64",
-        "qt_arch": "win64_msvc2019_arm64",
+        "qt_arch": "win64_msvc2019_amd64_arm64",
     },
 ]
 
