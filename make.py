@@ -28,7 +28,6 @@ Tasks:
   - build-qt
   - build-macos
   - build-win-x64
-  - build-win-arm64
 """
 
 from docopt import docopt
@@ -90,10 +89,6 @@ def main(options):
     # build windows (x64)
     elif make_task == "build-win-x64":
         windows.run_task_build(c.targets_win_x64)
-
-    # build windows (arm64)
-    elif make_task == "build-win-arm64":
-        windows.run_task_build(c.targets_win_arm64)
 
     #######################
     # Invalid

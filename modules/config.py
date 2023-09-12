@@ -26,17 +26,6 @@ targets_macos = [
 ]
 
 # windows
-targets_win_arm64 = [
-    {
-        "name": "win",
-        "cpu": "arm64",
-        "mode": "release",
-        "qt_platform": "windows desktop",
-        "qt_dir": "msvc2019_arm64",
-        "qt_arch": "win64_msvc2019_amd64_arm64",
-    },
-]
-
 targets_win_x64 = [
     {
         "name": "win",
