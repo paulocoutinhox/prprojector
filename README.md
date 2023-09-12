@@ -46,20 +46,6 @@ python3 -m pip install -r requirements.txt
 python3 make.py run build-win-x64
 ```
 
-## How to build for Windows (arm64)
-
-1 - Install python requirements:
-
-```
-python3 -m pip install -r requirements.txt
-```
-
-2 - Call build for your platform:
-
-```
-python3 make.py run build-win-arm64
-```
-
 ## How to encode certificates on macOS
 
 Run on terminal:
