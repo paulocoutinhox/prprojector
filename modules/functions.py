@@ -1,17 +1,15 @@
+import glob
 import os
+import re
 import shutil
 import stat
 import sys
 import tarfile
-import zipfile
-import glob
 import urllib.parse as urlparse
 import urllib.request as urllib2
-import re
-from subprocess import check_call
+import zipfile
 from distutils.dir_util import copy_tree
 
-from slugify import slugify
 from tqdm import tqdm
 
 

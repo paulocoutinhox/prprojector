@@ -14,25 +14,21 @@ macos_installer_certificate_name = (
     "3rd Party Mac Developer Installer: Paulo Coutinho (99AHAA343Q)"
 )
 
-targets_macos = [
-    {
-        "name": "macos",
-        "cpu": "x64",
-        "mode": "release",
-        "qt_platform": "mac desktop",
-        "qt_dir": "macos",
-        "qt_arch": "clang_64",
-    },
-]
+target_macos_x64 = {
+    "name": "macos",
+    "cpu": "x64",
+    "mode": "release",
+    "qt_platform": "mac desktop",
+    "qt_dir": "macos",
+    "qt_arch": "clang_64",
+}
 
 # windows
-targets_win_x64 = [
-    {
-        "name": "win",
-        "cpu": "x64",
-        "mode": "release",
-        "qt_platform": "windows desktop",
-        "qt_dir": "msvc2019_64",
-        "qt_arch": "win64_msvc2019_64",
-    },
-]
+target_win_x64 = {
+    "name": "win",
+    "cpu": "x64",
+    "mode": "release",
+    "qt_platform": "windows desktop",
+    "qt_dir": "msvc2019_64",
+    "qt_arch": "win64_msvc2019_64",
+}

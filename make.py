@@ -79,8 +79,8 @@ def main(options):
     #######################
 
     # build macos
-    elif make_task == "build-macos":
-        macos.run_task_build()
+    elif make_task == "build-macos-x64":
+        macos.run_task_build(c.target_macos_x64)
 
     #######################
     # windows
@@ -88,7 +88,7 @@ def main(options):
 
     # build windows (x64)
     elif make_task == "build-win-x64":
-        windows.run_task_build(c.targets_win_x64)
+        windows.run_task_build(c.target_win_x64)
 
     #######################
     # Invalid
