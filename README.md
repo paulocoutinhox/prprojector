@@ -29,7 +29,7 @@ python3 -m pip install -r requirements.txt
 2 - Call build for your platform:
 
 ```
-python3 make.py run build-macos
+python3 make.py run build-macos-x64
 ```
 
 ## How to build for Windows (x64)
