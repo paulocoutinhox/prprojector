@@ -343,7 +343,7 @@ def run_task_build():
         command.append("distribution.xml")
         command.append(
             os.path.join(
-                pkg_dir, "PRProjector-{0}-{1}.pkg".format(target["cpu"], target["mode"])
+                pkg_dir, "PRProjector-macos-{0}-{1}.pkg".format(target["cpu"], target["mode"])
             )
         )
 

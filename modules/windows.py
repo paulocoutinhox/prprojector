@@ -152,7 +152,7 @@ def run_task_build(config):
 
         f.make_zipfile(
             os.path.join(
-                pkg_dir, "PRProjector-{0}-{1}.zip".format(target["cpu"], target["mode"])
+                pkg_dir, "PRProjector-win-{0}-{1}.zip".format(target["cpu"], target["mode"])
             ),
             out_dir,
         )
