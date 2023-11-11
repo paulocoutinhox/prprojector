@@ -3,7 +3,7 @@ make_debug = False
 make_task = ""
 
 # qt
-qt_version = "6.5.2"
+qt_version = "6.6.0"
 
 # macos
 macos_pkg_version = "2.0.0"
