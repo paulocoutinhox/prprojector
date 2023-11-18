@@ -6,7 +6,7 @@ make_task = ""
 qt_version = "6.6.0"
 
 # macos
-macos_pkg_version = "2.1.0"
+macos_pkg_version = "2.1.1"
 macos_identifier = "com.paulocoutinho.prprojector"
 
 macos_dist_certificate_name = "Apple Distribution: Paulo Coutinho (99AHAA343Q)"
